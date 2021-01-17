@@ -28,6 +28,8 @@ package leetcode.editor.cn;
 public class BestTimeToBuyAndSellStock {
     public static void main(String[] args) {
         Solution solution = new BestTimeToBuyAndSellStock().new Solution();
+
+        System.out.println(solution.maxProfit(new int[]{1,2,3}));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
