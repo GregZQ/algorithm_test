@@ -54,6 +54,10 @@
 // 👍 124 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class IntervalListIntersections {
     public static void main(String[] args) {
         Solution solution = new IntervalListIntersections().new Solution();
@@ -61,7 +65,43 @@ public class IntervalListIntersections {
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
+        List<Integer> leftList = new ArrayList<>();
+        List<Integer> rightList = new ArrayList<>();
+        int firstLength = firstList.length;
+        int secondLength = secondList.length;
+        int a1 = 0, a2 = 0;
+        int b1 = 0, b2 = 0;
+        int i = 0, j = 0;
+        while (i < firstLength && j < secondLength) {
+            a1 = firstList[i][0];
+            a2 = firstList[i][1];
+            b1 = secondList[j][0];
+            b2 = secondList[j][1];
+            if (a1 > b2) {
+                j ++;
+                continue;
+            } else if (a2 < b1) {
+                i ++;
+                continue;
+            } else {
+                leftList.add(Math.max(a1,b1));
+                rightList.add(Math.min(a2,b2));
+                if (a2 <= b2) {
+                    i ++;
+                } else {
+                    j ++;
+                }
+            }
+        }
 
+        int [][] result = new int[leftList.size()][2];
+
+        for (int cnt = 0; cnt < leftList.size(); cnt ++){
+            result[cnt][0] = leftList.get(cnt);
+            result[cnt][1] = rightList.get(cnt);
+        }
+
+        return result;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
