@@ -31,18 +31,6 @@ public class InvertBinaryTree {
     public static void main(String[] args) {
         Solution solution = new InvertBinaryTree().new Solution();
 
-        TreeNode node6 = new TreeNode(6, null, null);
-        TreeNode node9 = new TreeNode(9, null, null);
-        TreeNode node1 = new TreeNode(1, null, null);
-        TreeNode node3 = new TreeNode(3, null, null);
-
-        TreeNode node2 = new TreeNode(2, node1, node3);
-        TreeNode node7 = new TreeNode(7, node6, node9);
-
-        TreeNode root = new TreeNode(4, node2, node7);
-
-        solution.invertTree(root);
-
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 /**
