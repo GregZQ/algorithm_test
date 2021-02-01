@@ -45,7 +45,7 @@ package leetcode.editor.cn;
 public class LongestCommonSubsequence {
     public static void main(String[] args) {
         Solution solution = new LongestCommonSubsequence().new Solution();
-        System.out.println(solution.longestCommonSubsequence("afc", "fac"));
+        System.out.println(solution.longestCommonSubsequence("b", "yby"));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
