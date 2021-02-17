@@ -58,40 +58,51 @@
 // 保证每次出现字符 * 时，前面都匹配到有效的字符 
 // 
 // Related Topics 字符串 动态规划 回溯算法 
-// 👍 1818 👎 0
+// 👍 1855 👎 0
 
 package leetcode.editor.cn;
-
 public class RegularExpressionMatching {
     public static void main(String[] args) {
         Solution solution = new RegularExpressionMatching().new Solution();
-        solution.isMatch("aa", "a*");
+        solution.isMatch("aab","c*a*b");
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-        public boolean isMatch(String s, String p) {
-            int length1 = s.length();
-            int length2 = p.length();
-            if (length2 <=0) {
-                return length1<=0;
-            }
+    public boolean isMatch(String s, String p) {
+        return check(s,0,p,0);
+    }
 
-//            if (s.length()<=0) {
-//               return p.charAt();
-//            }
 
-            boolean result;
-            result = length1 > 0 && (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.');// 当前字符是否相同
-            if (p.length() >= 2 && p.charAt(1) == '*') {
-                result = (isMatch(s, p.length() > 2 ? p.substring(2) : "") ||  result && isMatch(s.length() > 1 ?
-                        s.substring(1) : "", p));
+    private boolean check(String s, int i, String p , int j) {
+        if (s.length() == i) {
+            if ((p.length() - j) % 2 == 0) {
+                for (int z = j + 1; z < p.length(); z += 2) {
+                    if (p.charAt(z) != '*') {
+                        return false;
+                    }
+                }
+                return true;
             } else {
-                result = result && isMatch(s.length() > 1 ? s.substring(1) : "", p.length() > 1 ? p.substring(1)
-                        : "");
+                return false;
             }
-
-            return result;
         }
+        if (p.length() == j && i < s.length()) {
+            return false;
+        }
+        if (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.') {
+            if (j < p.length() - 1 && p.charAt(j + 1) == '*') {
+                return check(s, i, p, j + 2) || check(s, i + 1, p, j);
+            } else {
+                return check(s, i + 1, p, j + 1);
+            }
+        } else {
+            if (j < p.length() -1 && p.charAt(j+1) == '*') {
+                return check(s,i,p,j+2);
+            } else {
+                return false;
+            }
+        }
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
